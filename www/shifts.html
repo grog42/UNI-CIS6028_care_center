@@ -1,0 +1,28 @@
+<!--Tool to find staff which have a shift during a set time and are currently free of be assigned a task-->
+<!doctype html>
+<html>
+<head>
+<title>Patient Care Center</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript" src="js/db_functions.js"></script>
+</head>
+<body>
+    <header></header>
+    <main>
+
+    </main>
+    <footer></footer>
+
+</body>
+<div id="error-box"></div>
+</html>
+
+<script>
+
+    var date = Date.now();
+
+    dbFunctions.selectWhere('shifts', {date: date}, 20, function(shifts){
+        
+    });
+</script>

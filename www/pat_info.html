@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+<head>
+<title>Patient Care Center</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript" src="js/db_functions.js"></script>
+</head>
+<body>
+    <header></header>
+    <main>
+        <div id="pat-info">
+
+        </div>
+
+        <div id="pat-reports">
+
+        </div>
+    </main>
+    <footer></footer>
+
+</body>
+<div id="error-box"></div>
+</html>
+
+<script>
+var params = (new URL(window.location.href)).searchParams;
+var patient_id = params.get("patient_id");
+
+dbFunctions.selectById('patients', patient_id, function(info){
+    
+});
+
+dbFunctions.selectWhere('reports', {"patient_id": patient_id}, 20, function(reports){
+
+});
+</script>

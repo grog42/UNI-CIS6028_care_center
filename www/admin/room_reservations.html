@@ -1,0 +1,44 @@
+<!--Lists rooms which are free to be reserved(Has no currently filled beds)-->
+<!--Gives options to reserve room until a set datetime-->
+
+<!--Page showing info on a room and beds it contatins-->
+<!doctype html>
+<html>
+<head>
+<title>Patient Care Center</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript" src="/js/db_functions.js"></script>
+</head>
+<body>
+    <header></header>
+    <main>
+        <div id="room-available">
+
+        </div>
+    </main>
+    <footer></footer>
+
+</body>
+<div id="error-box"></div>
+</html>
+
+<script>
+//Find all active room reservations
+dbFunctions.selectAll('rooms', 1000, function(rooms){
+
+for(var i = 0; i < rooms.length; i++){
+    var room = rooms[i];
+
+    dbFunctions.selectWhereActive("reservations", {room_id: room.id}, 20, function(reservations){
+        if(reservations.length === 0){
+            dbFunctions.selectWhereActive("reports", {room_id: room.id}, 20, function(reports){
+                if(reports.length === 0){
+                    $("#room-available").append("<p>test</p>");
+                }
+            });
+        }
+    });
+}
+});
+</script>

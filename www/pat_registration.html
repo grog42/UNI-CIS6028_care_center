@@ -1,0 +1,55 @@
+<!--Page for regstering new patents into the care center-->
+<!doctype html>
+<html>
+<head>
+<title>Patient Care Center</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript" src="js/db_functions.js"></script>
+</head>
+<body>
+    <header></header>
+    <main>
+        <form id="pat-reg-form">
+            <label for="firstname">Firstname</label>
+            <input type="text" name="firstname" required>
+
+            <label for="lastname">Lastname</label>
+            <input type="text" name="lastname" required>
+
+            <label for="date_of_birth">Date Of Birth</label>
+            <input type="date" name="date_of_birth" required>
+
+            <label for="phone_nunber">Phone Number</label>
+            <input type="text" name="phone_number" required>
+
+            <label for="address">Address</label>
+            <input type="text" name="address">
+
+            <!--List showing free rooms with spare beds-->
+
+            <input type="submit">
+        </form>
+    </main>
+    <footer></footer>
+
+</body>
+<div id="error-box"></div>
+</html>
+
+<script>
+    $("#pat-reg-form").submit(function(e){
+        e.preventDefault();
+
+        var data = dbFunctions.createDataObj("pat-reg-form", 
+        [
+            "firstname", 
+            "lastname",
+            "date_of_birth",
+            "phone_number",
+            "address"
+        ]);
+
+        dbFunctions.insertInto("patients", data);
+    });
+</script>

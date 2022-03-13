@@ -1,0 +1,47 @@
+<!--Page with functions to assign shifts to staff, add new staff, remove staff and edit staff info-->
+<!doctype html>
+<html>
+<head>
+<title>Patient Care Center</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript" src="js/db_functions.js"></script>
+</head>
+<body>
+    <header></header>
+    <main>
+        <form>
+            <h3>Find member of staff</h3>
+            <label for="firstname">Firstname</label>
+            <input type="text" name="firstname">
+            <label for="lastname">Lastname</label>
+            <input type="text" name="lastname">
+
+            <input type="submit">
+        </form>
+        <div id="staff-info">
+
+        </div>
+
+        <div id="staff-shifts">
+
+        </div>
+    </main>
+    <footer></footer>
+
+</body>
+<div id="error-box"></div>
+</html>
+
+<script>
+    var params = (new URL(window.location.href)).searchParams;
+    var staff_id = params.get("staff_id");
+    
+    dbFunctions.selectById('staff', staff_id, function(info){
+        
+    });
+    
+    dbFunctions.selectWhere('shifts', {"staff_id": staff_id}, 20, function(reports){
+    
+    });
+</script>
